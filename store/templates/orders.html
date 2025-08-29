@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+      <title>Orders eCommerce HTML Template - FreshCart</title>
+      <!-- Favicon icon-->
+      <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon/favicon.ico' %}" />
+
+      <!-- Libs CSS -->
+      <link href="{% static 'libs/bootstrap-icons/font/bootstrap-icons.min.css' %}" rel="stylesheet" />
+      <link href="{% static 'libs/feather-webfont/dist/feather-icons.css' %}" rel="stylesheet" />
+      <link href="{% static 'libs/simplebar/dist/simplebar.min.css' %}" rel="stylesheet" />
+
+      <!-- Theme CSS -->
+      <link rel="stylesheet" href="{% static 'css/theme.min.css' %}" />
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag() {
+            dataLayer.push(arguments);
+         }
+         gtag("js", new Date());
+
+         gtag("config", "G-M8S4MT3EYG");
+      </script>
+      <script type="text/javascript">
+         (function (c, l, a, r, i, t, y) {
+            c[a] =
+               c[a] ||
+               function () {
+                  (c[a].q = c[a].q || []).push(arguments);
+               };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+         })(window, document, "clarity", "script", "kuc8w5o9nt");
+      </script>
+     {% endblock %}
+
+        {% block content %}
+
+         <!-- section -->
+         <section>
+            <div class="container">
+               <!-- row -->
+               <div class="row">
+                  <!-- col -->
+                  <div class="col-12">
+                     <div class="d-flex justify-content-between align-items-center d-md-none py-4">
+                        <!-- heading -->
+                        <h3 class="fs-5 mb-0">Account Setting</h3>
+                        <!-- button -->
+                        <button
+                           class="btn btn-outline-gray-400 text-muted d-md-none btn-icon btn-sm ms-3"
+                           type="button"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#offcanvasAccount"
+                           aria-controls="offcanvasAccount">
+                           <i class="bi bi-text-indent-left fs-3"></i>
+                        </button>
+                     </div>
+                  </div>
+                  <!-- col -->
+                  <div class="col-lg-3 col-md-4 col-12 border-end d-none d-md-block">
+                     <div class="pt-10 pe-lg-10">
+                        <!-- nav -->
+                        <ul class="nav flex-column nav-pills nav-pills-dark">
+                           <!-- nav item -->
+                           <li class="nav-item">
+                              <!-- nav link -->
+                              <a class="nav-link {% if request.resolver_match.url_name == 'orders' %}active{% endif %}" href="{% url 'orders' %}">
+                                <i class="feather-icon icon-shopping-bag me-2"></i>
+                                 Your Orders
+                              </a>
+
+                           </li>
+                           <!-- nav item -->
+                           <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'settings' %}active{% endif %}" href="{% url 'settings' %}">
+                            <i class="feather-icon icon-settings me-2"></i>
+                                 Settings
+                            </a>
+
+                           </li>
+                           <!-- nav item -->
+                           <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'address' %}active{% endif %}" href="{% url 'address' %}">
+                            <i class="feather-icon icon-map-pin me-2"></i>
+                                  Address
+                            </a>
+
+                           </li>
+                           <!-- nav item -->
+                           <li class="nav-item">
+                              <a class="nav-link {% if request.resolver_match.url_name == 'notification' %}active{% endif %}" href="{% url 'notification' %}">
+                                 <i class="feather-icon icon-bell me-2"></i>
+                                 Notification
+                              </a>
+                           </li>
+                           <!-- nav item -->
+                           <li class="nav-item">
+                              <hr />
+                           </li>
+                           <!-- nav item -->
+                           <li class="nav-item">
+                               <a class="nav-link" href="{% url 'logout' %}">
+                                  <i class="feather-icon icon-log-out me-2"></i>
+                               Log out
+                                </a>
+                           </li>
+
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-lg-9 col-md-8 col-12">
+                     <div class="py-6 p-md-6 p-lg-10">
+                        <!-- heading -->
+                        <h2 class="mb-6">Your Orders</h2>
+
+                        <div class="table-responsive-xxl border-0">
+                           <!-- Table -->
+                           <table class="table mb-0 text-nowrap table-centered">
+                              <!-- Table Head -->
+                              <thead class="bg-light">
+                                 <tr>
+                                    <th>&nbsp;</th>
+                                    <th>Product</th>
+                                    <th>Order</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Amount</th>
+
+                                    <th></th>
+                                 </tr>
+                              </thead>
+<tbody>
+  {% if orders %}
+    {% for order in orders %}
+      {% for item in order.items.all %}
+        <tr>
+          <td class="align-middle border-top-0 w-0">
+            <a href="#">
+              <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="icon-shape icon-xl" />
+            </a>
+          </td>
+          <td class="align-middle border-top-0">
+            <a href="#" class="fw-semibold text-inherit">
+              <h6 class="mb-0">{{ item.product.name }}</h6>
+            </a>
+            <span><small class="text-muted">{{ item.size }}</small></span>
+          </td>
+          <td class="align-middle border-top-0">#{{ order.id }}</td>
+          <td class="align-middle border-top-0">{{ order.created_at|date:"M d, Y" }}</td>
+          <td class="align-middle border-top-0">{{ item.quantity }}</td>
+          <td class="align-middle border-top-0">
+            {{ item.quantity|floatformat:0 }} × {{ item.price_at_order }} DA = {{ item.quantity|floatformat:0|add:"0"|floatformat:2 }} DA
+          </td>
+        </tr>
+      {% endfor %}
+    {% endfor %}
+  {% else %}
+    <tr>
+      <td colspan="7" class="text-center">
+        No orders found. Logged in as: {{ request.user.username }}. Orders found: {{ orders|length }}
+      </td>
+    </tr>
+  {% endif %}
+</tbody>
+
+
+
+                   </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+
+      <!-- modal -->
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasAccount" aria-labelledby="offcanvasAccountLabel">
+         <!-- offcanvas header -->
+         <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasAccountLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+         </div>
+         <!-- offcanvas body -->
+         <div class="offcanvas-body">
+            <ul class="nav flex-column nav-pills nav-pills-dark">
+               <!-- nav item -->
+               <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'orders' %}">
+                     <i class="feather-icon icon-shopping-bag me-2"></i>
+                     Your Orders
+                  </a>
+               </li>
+               <!-- nav item -->
+               <li class="nav-item">
+                  <a class="nav-link" href="{% url 'settings' %}">
+                     <i class="feather-icon icon-settings me-2"></i>
+                     Settings
+                  </a>
+               </li>
+               <!-- nav item -->
+               <li class="nav-item">
+                  <a class="nav-link" href="{% url 'address' %}">
+                     <i class="feather-icon icon-map-pin me-2"></i>
+                     Address
+                  </a>
+               </li>
+               <!-- nav item -->
+               <li class="nav-item">
+                  <a class="nav-link" href="{% url 'notification' %}">
+                     <i class="feather-icon icon-bell me-2"></i>
+                     Notification
+                  </a>
+               </li>
+            </ul>
+            <hr class="my-6" />
+            <div>
+               <!-- nav  -->
+               <ul class="nav flex-column nav-pills nav-pills-dark">
+                  <!-- nav item -->
+                  <li class="nav-item">
+                     <a class="nav-link" href="{% url 'home' %}">
+                        <i class="feather-icon icon-log-out me-2"></i>
+                        Log out
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+       {% endblock %}
+
+              {% block scripts %}
+
+      <!-- Javascript-->
+      <!-- Libs JS -->
+      <!-- <script src="../assets/libs/jquery/dist/jquery.min.js"></script> -->
+      <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'libs/simplebar/dist/simplebar.min.js' %}"></script>
+
+      <!-- Theme JS -->
+      <script src="{% static 'js/theme.min.js' %}"></script>
+         {% endblock %}
+

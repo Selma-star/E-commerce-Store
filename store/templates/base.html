@@ -1,0 +1,33 @@
+<!-- store/templates/base.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta content="Codescandy" name="author" />
+    <title>{% block title %}MyShop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/theme.min.css' %}" />
+        {% block extra_head %}{% endblock %}
+
+    <!-- Add Bootstrap, FontAwesome, etc. if needed -->
+</head>
+<body>
+    
+    <!-- Header -->
+    {% include "partials/header.html" %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% include "partials/footer.html" %}
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

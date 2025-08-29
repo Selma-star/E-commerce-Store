@@ -1,0 +1,535 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+      <title>Shop Checkout eCommerce HTML Template - FreshCart</title>
+      <!-- Favicon icon-->
+      <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon/favicon.ico' %}" />
+
+      <!-- Libs CSS -->
+      <link href="{% static 'libs/bootstrap-icons/font/bootstrap-icons.min.css' %}" rel="stylesheet" />
+      <link href="{% static 'libs/feather-webfont/dist/feather-icons.css' %}" rel="stylesheet" />
+      <link href="{% static 'libs/simplebar/dist/simplebar.min.css' %}" rel="stylesheet" />
+
+      <!-- Theme CSS -->
+      <link rel="stylesheet" href="{% static 'css/theme.min.css' %}" />
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag() {
+            dataLayer.push(arguments);
+         }
+         gtag("js", new Date());
+
+         gtag("config", "G-M8S4MT3EYG");
+      </script>
+      <script type="text/javascript">
+         (function (c, l, a, r, i, t, y) {
+            c[a] =
+               c[a] ||
+               function () {
+                  (c[a].q = c[a].q || []).push(arguments);
+               };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+         })(window, document, "clarity", "script", "kuc8w5o9nt");
+      </script>
+     {% endblock %}
+
+
+   {% block content %}
+     
+         <!-- section -->
+         <section class="mb-lg-14 mb-8 mt-8">
+            <div class="container">
+               <!-- row -->
+               <div class="row">
+                  <!-- col -->
+                  <div class="col-12">
+                     <div>
+                        <div class="mb-8">
+                           <!-- text -->
+                           <h1 class="fw-bold mb-0">Checkout</h1>
+                           <p class="mb-0">
+                              Already have an account? Click here to
+                              <a href="#!">Sign in</a>
+                              .
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div>
+                  <!-- row -->
+            
+                  <div class="row">
+                     <div class="col-xl-7 col-lg-6 col-md-12">
+                        <!-- accordion -->
+                        <div class="accordion accordion-flush" id="accordionFlushExample"> 
+                  <form id="orderForm" method="post" action="{% url 'place_order' %}" class="no-style-form" >
+                  {% csrf_token %}
+                  <input type="hidden" name="address" id="hiddenAddressInput">
+
+                           <!-- accordion item -->
+<div class="accordion-item py-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <!-- heading one -->
+    <a
+      href="#"
+      class="fs-5 text-inherit collapsed h4"
+      data-bs-toggle="collapse"
+      data-bs-target="#flush-collapseOne"
+      aria-expanded="true"
+      aria-controls="flush-collapseOne">
+      <i class="feather-icon icon-map-pin me-2 text-muted"></i>
+      Delivery address
+    </a>
+    <!-- btn -->
+    <a href="#" id="editAddressBtn" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add address</a>
+  </div>
+
+  <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+    <div class="mt-5">
+      <div class="row">
+        <div class="col-12" id="singleAddressWrapper">
+          <!-- Address card will be inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                           <!-- accordion item -->
+                           <div class="accordion-item py-4">
+                              <a href="#" class="text-inherit collapsed h5" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                 <i class="feather-icon icon-clock me-2 text-muted"></i>
+                                 Delivery time
+                              </a>
+                              <!-- collapse -->
+                              <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                 <!-- nav -->
+                                      <div class="mt-5">
+      <label for="delivery-day" class="form-label mb-3">Select Day</label>
+      <select id="delivery-day" name="delivery_day" class="form-select">
+        <option value="" selected disabled>Choose a day</option>
+        <option value="today">Today</option>
+        <option value="tomorrow">Tomorrow</option>
+        <option value="monday">Monday</option>
+        <option value="tuesday">Tuesday</option>
+        <!-- Add more days if needed -->
+      </select>
+    </div>
+<div class="mt-5">
+      <label for="delivery-time" class="form-label mb-3">Select Time</label>
+      <select id="delivery-time" name="delivery_time" class="form-select">
+        <option value="" selected disabled>Choose a time slot</option>
+        <option value="9-10am">9:00 – 10:00 AM</option>
+        <option value="10-11am">10:00 – 11:00 AM</option>
+        <option value="12-1pm">12:00 – 1:00 PM</option>
+        <option value="3-4pm">3:00 – 4:00 PM</option>
+        <option value="6-7pm">6:00 – 7:00 PM</option>
+        <!-- Add more time slots if needed -->
+      </select>
+    </div>
+                                 <div class="mt-5 d-flex justify-content-end">
+                                    <a
+                                       href="#"
+                                       class="btn btn-outline-gray-400 text-muted"
+                                       data-bs-toggle="collapse"
+                                       data-bs-target="#flush-collapseOne"
+                                       aria-expanded="false"
+                                       aria-controls="flush-collapseOne">
+                                       Prev
+                                    </a>
+                                    <a href="#" class="btn btn-primary ms-2" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                       Next
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- accordion item -->
+                           <div class="accordion-item py-4">
+                              <a href="#" class="text-inherit h5" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                 <i class="feather-icon icon-shopping-bag me-2 text-muted"></i>
+                                 Delivery instructions
+                                 <!-- collapse -->
+                              </a>
+                              <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                 <div class="mt-5">
+                                    <label for="DeliveryInstructions" class="form-label sr-only">Delivery instructions</label>
+                                    <textarea class="form-control" id="DeliveryInstructions" rows="3" placeholder="Write delivery instructions "></textarea>
+                                    <p class="form-text">Add instructions for how you want your order shopped and/or delivered</p>
+                                    <div class="mt-5 d-flex justify-content-end">
+                                       <a
+                                          href="#"
+                                          class="btn btn-outline-gray-400 text-muted"
+                                          data-bs-toggle="collapse"
+                                          data-bs-target="#flush-collapseTwo"
+                                          aria-expanded="false"
+                                          aria-controls="flush-collapseTwo">
+                                          Prev
+                                       </a>
+                                       <a href="#" class="btn btn-primary ms-2" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                          Next
+                                       </a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- accordion item -->
+                           <!-- accordion item -->
+<div class="accordion-item py-4">
+   <a href="#" class="text-inherit h5" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+      <i class="feather-icon icon-phone me-2 text-muted"></i>
+      Phone Number
+   </a>
+   <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="mt-5">
+         <div class="card card-bordered shadow-none mb-2">
+            <div class="card-body p-6">
+               <div class="mb-3">
+                  <label for="phoneNumber" class="form-label">Enter Your Phone Number</label>
+                  <input type="tel" class="form-control" id="phoneNumber" name="phone" placeholder="+1234567890" required>
+               </div>
+            </div>
+         </div>
+         <!-- Button -->
+  <div class="mt-5 d-flex justify-content-end">
+    <a href="#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree">
+      Prev
+    </a>
+<button id="placeOrderBtn" type="submit" class="btn btn-primary ms-2">Place Order</button>
+  </div>
+      </div>
+   </div>
+</div>
+</form>
+                        </div>
+                     </div>
+
+
+<style>
+
+.accordion.accordion-flush {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.accordion-item {
+  border: none;
+  border-bottom: 1px solid #dee2e6;
+  background-color: transparent;
+}
+
+.no-style-form {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+</style>
+
+
+<div class="col-md-12 offset-xl-1 col-xl-4 col-lg-6">
+   <div class="mt-4 mt-lg-0">
+      <div class="card shadow-sm">
+         <h5 class="px-6 py-4 bg-transparent mb-0">Order Details</h5>
+         <ul class="list-group list-group-flush">
+
+            {% for item in cart.items.all %}
+            <!-- Single item -->
+            <li class="list-group-item px-4 py-3">
+               <div class="row align-items-center">
+                  <div class="col-2 col-md-2">
+                     <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid" />
+                  </div>
+                  <div class="col-5 col-md-5">
+                     <h6 class="mb-0">{{ item.product.name }}</h6>
+                     <span><small class="text-muted">{{ item.product.price|floatformat:2 }} x {{ item.quantity }} DZD</small></span>
+                  </div>
+                  <div class="col-2 col-md-2 text-center text-muted">
+                     <span>{{ item.quantity }}</span>
+                  </div>
+                  <div class="col-3 text-lg-end text-start text-md-end col-md-3">
+                     <span class="fw-bold">{{ item.product.price|floatformat:2 }} DZD</span>
+                  </div>
+               </div>
+            </li>
+            {% endfor %}
+
+            <!-- Totals -->
+            <li class="list-group-item px-4 py-3">
+               <div class="d-flex align-items-center justify-content-between mb-2">
+                  <div>Item Subtotal</div>
+                  <div class="fw-bold">{{ item_subtotal|floatformat:2 }} DZD</div>
+               </div>
+               <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                     Delivery Fee
+                  </div>
+                  <div class="fw-bold">{{ service_fee|floatformat:2 }} DZD</div>
+               </div>
+            </li>
+
+            <li class="list-group-item px-4 py-3">
+               <div class="d-flex align-items-center justify-content-between fw-bold">
+                  <div>Total</div>
+                  <div>{{ total|floatformat:2 }} DZD</div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
+
+                  </div>
+               </div>
+            </div>
+         </section>
+     
+
+      <!-- Modal -->
+ <!-- Add Address Modal -->
+<div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form id="addAddressForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Delivery Address</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>First Name</label>
+            <input type="text" name="first_name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Last Name</label>
+            <input type="text" name="last_name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Address Line 1</label>
+            <input type="text" name="address1" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Address Line 2</label>
+            <input type="text" name="address2" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>City</label>
+            <input type="text" name="city" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Phone</label>
+            <input type="text" name="phone" class="form-control" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save Address</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Order Summary Modal -->
+<div class="modal fade" id="orderSummaryModal" tabindex="-1" aria-labelledby="orderSummaryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderSummaryModalLabel">Order Summary</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body" id="orderSummaryModalBody">
+        <!-- This will be filled dynamically with the partial below -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const addAddressForm = document.getElementById("addAddressForm");
+  const addressWrapper = document.getElementById("singleAddressWrapper");
+  const editAddressBtn = document.getElementById("editAddressBtn");
+  const addressModal = new bootstrap.Modal(document.getElementById("addAddressModal"));
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  let addressData = null;
+
+  function renderAddressCard(data) {
+    addressWrapper.innerHTML = `
+      <div class="card card-body p-6">
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" checked>
+          <label class="form-check-label text-dark">Delivery Address</label>
+        </div>
+        <address>
+          <strong>${data.first_name} ${data.last_name}</strong><br>
+          ${data.address1}${data.address2 ? ', ' + data.address2 : ''}<br>
+          ${data.city}<br>
+          <abbr title="Phone">P:</abbr> ${data.phone}
+        </address>
+      </div>
+    `;
+    editAddressBtn.textContent = "Edit address";
+
+    const phoneField = document.getElementById("phoneNumber");
+    if (phoneField) phoneField.value = data.phone;
+  }
+
+  addAddressForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(addAddressForm);
+
+    const data = {
+      first_name: formData.get("first_name"),
+      last_name: formData.get("last_name"),
+      address1: formData.get("address1"),
+      address2: formData.get("address2"),
+      city: formData.get("city"),
+      phone: formData.get("phone")
+    };
+
+    addressData = data;
+    renderAddressCard(data);
+    addAddressForm.reset();
+    addressModal.hide();
+  });
+
+  editAddressBtn.addEventListener("click", function () {
+    if (!addressData) return;
+
+    addAddressForm.elements["first_name"].value = addressData.first_name;
+    addAddressForm.elements["last_name"].value = addressData.last_name;
+    addAddressForm.elements["address1"].value = addressData.address1;
+    addAddressForm.elements["address2"].value = addressData.address2;
+    addAddressForm.elements["city"].value = addressData.city;
+    addAddressForm.elements["phone"].value = addressData.phone;
+  });
+
+  // 🟢 Submit order to show modal
+  document.getElementById("orderForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!addressData) {
+      alert("Please enter a delivery address first.");
+      return;
+    }
+
+    const phone = document.getElementById("phoneNumber").value;
+    const deliveryDay = document.getElementById("delivery-day").value;
+    const deliveryTime = document.getElementById("delivery-time").value;
+
+    const fullAddress = `${addressData.first_name} ${addressData.last_name}, ${addressData.address1}${addressData.address2 ? ', ' + addressData.address2 : ''}, ${addressData.city}`;
+
+    fetch('/place-order/', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': getCookie('csrftoken'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phone: phone,
+        delivery_day: deliveryDay,
+        delivery_time: deliveryTime,
+        address: fullAddress
+      })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("Failed to load summary.");
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById('orderSummaryModalBody').innerHTML = data.html;
+
+      const summaryModal = new bootstrap.Modal(document.getElementById('orderSummaryModal'));
+      summaryModal.show();
+
+      // ✅ Attach confirm button listener after modal is shown
+      document.getElementById("confirmOrderBtn").addEventListener("click", function () {
+        fetch('/checkout/confirm-order/', {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+          },
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            console.log("✅ confirm-order response:", data);
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('orderSummaryModal'));
+            if (modal) modal.hide();
+
+            alert(data.alreadyOrdered ? "This cart has already been ordered." : "Order placed successfully!");
+            if (typeof refreshCartSidebar === 'function') {
+              refreshCartSidebar();
+            }
+
+            setTimeout(() => {
+              console.log("🔁 Redirecting to:", data.redirect_url || "/shop-checkout/");
+              window.location.href = data.redirect_url || "/shop-checkout/";
+
+            }, 500);
+          } else {
+            alert("Something went wrong.");
+          }
+        });
+      });
+
+    })
+    .catch(err => {
+      console.error("Error submitting order:", err);
+    });
+  });
+
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+});
+</script>
+
+
+
+
+
+
+
+ {% endblock %}
+
+
+
+     {% block scripts %}
+      <!-- Javascript-->
+      <script src="{% static 'libs/flatpickr/dist/flatpickr.min.js' %}"></script>
+      <!-- Libs JS -->
+      <!-- <script src="../assets/libs/jquery/dist/jquery.min.js"></script> -->
+      <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'libs/simplebar/dist/simplebar.min.js' %}"></script>
+
+      <!-- Theme JS -->
+      <script src="{% static 'js/theme.min.js' %}"></script>
+
+      <script src="{% static 'libs/imask/dist/imask.min.js' %}"></script>
+      <script src="{% static 'js/vendors/inputmask.js' %}"></script>
+   {% endblock %}

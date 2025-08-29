@@ -1,0 +1,67 @@
+{% load static %}
+
+<!-- DEBUG: Cart ID: {{ cart.id }} | Items count: {{ cart.items.count }} -->
+
+<div>
+  {% if cart %}
+    <ul class="list-group list-group-flush">
+      {% for item in cart.items.all %}
+      <li class="list-group-item py-3 ps-0 border-top">
+        <div class="row align-items-center">
+          <div class="col-6 col-md-6 col-lg-7">
+            <div class="d-flex">
+              {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="icon-shape icon-xxl" />
+              {% else %}
+                <img src="{% static 'images/products/default.jpg' %}" alt="No image" class="icon-shape icon-xxl" />
+              {% endif %}
+              <div class="ms-3">
+                <a href="#" class="text-inherit">
+                  <h6 class="mb-0">{{ item.product.name }}</h6>
+                </a>
+                <span><small class="text-muted">Size: {{ item.size }}</small></span>
+                <div class="mt-2 small lh-1">
+                  <form method="POST" action="{% url 'remove-from-cart' item.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link btn-sm text-decoration-none text-inherit p-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-success">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                      </svg>
+                      <span class="text-muted">Remove</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 col-md-3 col-lg-3">
+            <div class="input-group input-spinner">
+              <input type="number" step="1" max="10" value="{{ item.quantity }}" name="quantity" class="quantity-input form-control-sm form-input" readonly />
+            </div>
+          </div>
+          <div class="col-2 text-lg-end text-start text-md-end col-md-2">
+            <span class="fw-bold">
+              {{ item.product.price }} DZD
+            </span>
+          </div>
+        </div>
+      </li>
+      {% empty %}
+      <li class="list-group-item py-3 ps-0 border-top text-center text-muted">
+        Your cart is empty.
+      </li>
+      {% endfor %}
+    </ul>
+
+    <div class="d-flex justify-content-between mt-4">
+      <a href="{% url 'shop-checkout' %}" class="btn btn-primary">Finish Shopping</a>
+    </div>
+  {% else %}
+    <p class="text-center mt-3 text-muted">🛒 Your cart is empty.</p>
+  {% endif %}
+</div>
+
+<script src="{% static 'js/sidebar.js' %}"></script>

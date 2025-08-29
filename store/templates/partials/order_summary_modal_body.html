@@ -1,0 +1,41 @@
+<!-- templates/partials/order_summary_modal_body.html -->
+ 
+<div>
+  <h5 class="mb-3">Delivery Details</h5>
+  <p><strong>Phone:</strong> {{ phone }}</p>
+  <p><strong>Day:</strong> {{ delivery_day }}</p>
+  <p><strong>Time:</strong> {{ delivery_time }}</p>
+  <p><strong>Address:</strong><br>{{ address|linebreaks }}</p>
+
+  <hr>
+
+  <h5 class="mb-3">Cart Summary</h5>
+  {% for item in cart.items.all %}
+    <div class="d-flex justify-content-between mb-2">
+      <span>{{ item.product.name }} (Size: {{ item.size }}) × {{ item.quantity }}</span>
+      <span>{{ item.product.price|floatformat:2 }} DA</span>
+    </div>
+  {% endfor %}
+
+  <hr>
+
+  <div class="d-flex justify-content-between">
+    <strong>Subtotal:</strong>
+    <strong>{{ sum_price|floatformat:2 }} DA</strong>
+  </div>
+  <div class="d-flex justify-content-between">
+    <span>Delivery:</span>
+    <span>{{ delivery_price|floatformat:2 }} DA</span>
+  </div>
+  <div class="d-flex justify-content-between mt-2 border-top pt-2">
+    <strong>Total:</strong>
+    <strong>{{ total_price|floatformat:2 }} DA</strong>
+  </div>
+
+  <div class="text-end mt-4">
+    <button id="confirmOrderBtn" class="btn btn-primary">Confirm Order</button>
+
+  </div>
+</div>
+
+

@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Mirrored from freshcart.codescandy.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Nov 2024 06:07:44 GMT -->
+{% block extra_head %}
+
+     <!-- Carousel Libraries -->
+<link rel="stylesheet" href="{% static 'libs/slick-carousel/slick/slick.css' %}" />
+<link rel="stylesheet" href="{% static 'libs/slick-carousel/slick/slick-theme.css' %}" />
+<link rel="stylesheet" href="{% static 'libs/tiny-slider/dist/tiny-slider.css' %}" />
+
+
+      <!-- Favicon icon-->
+<link rel="shortcut icon" href="{% static 'images/favicon/favicon.ico' %}" type="image/x-icon" />
+
+     <!-- Icon Fonts -->
+<link rel="stylesheet" href="{% static 'libs/bootstrap-icons/font/bootstrap-icons.min.css' %}" />
+<link rel="stylesheet" href="{% static 'libs/feather-webfont/dist/feather-icons.css' %}" />
+
+<!-- Scrollbar & Utilities -->
+<link rel="stylesheet" href="{% static 'libs/simplebar/dist/simplebar.min.css' %}" />
+
+      <!-- Theme CSS -->
+<link rel="stylesheet" href="{% static 'css/theme.min.css' %}" />
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag() {
+            dataLayer.push(arguments);
+         }
+         gtag("js", new Date());
+
+         gtag("config", "G-M8S4MT3EYG");
+      </script>
+      <script type="text/javascript">
+         (function (c, l, a, r, i, t, y) {
+            c[a] =
+               c[a] ||
+               function () {
+                  (c[a].q = c[a].q || []).push(arguments);
+               };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+         })(window, document, "clarity", "script", "kuc8w5o9nt");
+      </script>
+ {% endblock %}
+
+  {% block content %}
+
+
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<script>
+   // Auto-dismiss alerts after 60 seconds
+   setTimeout(function () {
+      const alerts = document.querySelectorAll('.alert');
+      alerts.forEach(alert => {
+         alert.classList.remove('show');
+         alert.classList.add('fade');
+         setTimeout(() => alert.remove(), 500); // remove from DOM after fade
+      });
+   }, 5000); // 60,000ms = 1 minute
+</script>
+
+
+        <section class="mt-8">
+  <div class="container">
+    <div class="hero-slider">
+
+      <!-- Slide 1 -->
+      <div class="slide-1-bg">
+        <div class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
+          <h2 class="text-dark display-5 fw-bold mt-4"><!--SuperMarket For Fresh Grocery--></h2>
+          <p class="lead"><!--Introduced a new model for online grocery shopping and convenient home delivery.--></p>
+
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide-2-bg">
+        <div class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
+
+         <h2 class="text-dark display-5 fw-bold mt-4">
+            <!--  Free Shipping on--><br />
+          <!--  orders over--> <span class="text-primary"><!--$100--></span>
+          </h2>
+          <p class="lead"><!--Free Shipping to First-Time Customers Only, After promotions and discounts are applied.--></p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<style>
+  .slide-1-bg {
+    background: url("{% static 'images/slider/kids 4.webp' %}") no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.5rem;
+  }
+
+  .slide-2-bg {
+    background: url("{% static 'images/slider/men clothes.jpg' %}") no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.5rem;
+  }
+  .slide-1-bg, .slide-2-bg {
+  height: 400px; /* or any fixed height you want */
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center; /* vertically center the inner content */
+}
+</style>
+
+
+         <!-- Category Section Start-->
+         <section class="mb-lg-10 mt-lg-14 my-8">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12 mb-6">
+                     <h3 class="mb-0">Featured Categories</h3>
+                  </div>
+               </div>
+               <div class="category-slider">
+                  <div class="item">
+                     <a href="" class="text-decoration-none text-inherit">
+                        <div class="card card-product mb-lg-4">
+                           <div class="card-body text-center py-8">
+                                <img src="{% static 'images/category/men symbole.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
+                              <div class="text-truncate">Men underwear</div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+                  <div class="item">
+                     <a href="" class="text-decoration-none text-inherit">
+                        <div class="card card-product mb-lg-4">
+                           <div class="card-body text-center py-8">
+                                <img src="{% static 'images/category/women symbole.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
+                              <div class="text-truncate">Women underwear</div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+                  <div class="item">
+                     <a href="" class="text-decoration-none text-inherit">
+                        <div class="card card-product mb-lg-4">
+                           <div class="card-body text-center py-8">
+                                 <img src="{% static 'images/category/kids.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
+                              <div class="text-truncate">kids underwear</div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+                  
+               </div>
+            </div>
+         </section>
+       <!-- Category Section End -->
+<section>
+  <div class="container">
+    <div class="row">
+
+      <!-- Banner 1: Fruits & Vegetables -->
+      <div class="col-12 col-md-6 mb-3 mb-lg-0">
+        <div class="banner-1-bg py-10 px-8 rounded">
+          <div>
+            <h3 class="fw-bold mb-1"></h3>
+            <p class="mb-4">
+              <span class="fw-bold"></span> 
+            </p>
+         
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner 2: Freshly Baked Buns -->
+      <div class="col-12 col-md-6 mb-3 mb-lg-0">
+        <div class="banner-2-bg py-10 px-8 rounded">
+          <div>
+            <h3 class="fw-bold mb-1"></h3>
+            <p class="mb-4">
+             <span class="fw-bold"></span>
+            </p>
+           
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Styles -->
+<style>
+  .banner-1-bg {
+    background-image: url("{% static 'images/banner/men.jpg' %}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .banner-2-bg {
+    background-image: url("{% static 'images/banner/kids 3.webp' %}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .banner-1-bg, .banner-2-bg {
+  min-height: 200px; /* Or your preferred height */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.5rem;
+  padding: 2.5rem 2rem; /* your py-10 px-8 converted to rem or keep as is */
+  display: flex;
+  align-items: center;  /* vertically center any content */
+  justify-content: center; /* optional: horizontally center */
+}
+
+</style>
+         <!-- Popular Products Start-->
+<section class="my-lg-14 my-8">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 mb-6">
+            <h3 class="mb-0">Popular Products</h3>
+         </div>
+      </div>
+
+      <div class="row g-4 row-cols-lg-5 row-cols-md-3 row-cols-2">
+         {% for product in products %}
+             {% include 'partials/card.html' with product=product %}
+         {% endfor %}
+      </div>
+   </div>
+</section>
+
+       
+         <section class="my-lg-14 my-8">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-6 col-lg-3">
+                     <div class="mb-8 mb-xl-0">
+                        <div class="mb-6">
+                           <img src="{% static 'images/icons/clock.svg' %}" alt="" />
+                        </div>
+
+                        <h3 class="h5 mb-3">10 minute grocery now</h3>
+                        <p>Get your order delivered to your doorstep at the earliest from FreshCart pickup stores near you.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                     <div class="mb-8 mb-xl-0">
+                        <div class="mb-6"><img src="{% static 'images/icons/gift.svg' %}" alt="" /></div>
+                        <h3 class="h5 mb-3">Best Prices & Offers</h3>
+                        <p>Cheaper prices than your local supermarket, great cashback offers to top it off. Get best pricess & offers.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                     <div class="mb-8 mb-xl-0">
+                        <div class="mb-6"><img src="{% static 'images/icons/package.svg' %}" alt="" /></div>
+                        <h3 class="h5 mb-3">Wide Assortment</h3>
+                        <p>Choose from 5000+ products across food, personal care, household, bakery, veg and non-veg & other categories.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                     <div class="mb-8 mb-xl-0">
+                        <div class="mb-6"><img src="{% static 'images/icons/refresh-cw.svg' %}" alt="" /></div>
+                        <h3 class="h5 mb-3">Easy Returns</h3>
+                        <p>
+                           Not satisfied with a product? Return it at the doorstep & get a refund within hours. No questions asked
+                           <a href="#!">policy</a>
+                           .
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+
+     
+      {% endblock %}
+
+
+      {% block scripts %}
+
+      <!-- Javascript-->
+
+      <!-- Libs JS -->
+      <!-- <script src="./assets/libs/jquery/dist/jquery.min.js"></script> -->
+      <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'libs/simplebar/dist/simplebar.min.js' %}"></script>
+
+      <!-- Theme JS -->
+      <script src="{% static 'js/theme.min.js' %}"></script>
+
+      <script src="{% static 'js/vendors/jquery.min.js' %}"></script>
+      <script src="{% static 'js/vendors/countdown.js' %}"></script>
+      <script src="{% static 'libs/slick-carousel/slick/slick.min.js' %}"></script>
+      <script src="{% static 'js/vendors/slick-slider.js' %}"></script>
+      <script src="{% static 'libs/tiny-slider/dist/min/tiny-slider.js' %} "></script>
+      <script src="{% static 'js/vendors/tns-slider.js' %}"></script>
+      <script src="{% static 'js/vendors/zoom.js' %}"></script>
+      
+
+
+      {% endblock %}
+  
